@@ -24,7 +24,7 @@ def select_folder_randomly():
 #This below should be called only once for selecting the folder randomly
 #after one call this should be comment out otherwise the code gets error 
 
-# select_folder_randomly()
+select_folder_randomly()
 
 #Function for Display the images: 
 def show(f_path):
