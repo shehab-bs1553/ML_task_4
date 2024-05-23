@@ -21,8 +21,10 @@ def select_folder_randomly():
          shutil.copytree(src_path, dst_path)
     print(f"Selected folders and their contents have been copied to {destination_directory}")
     
+#This below should be called only once for selecting the folder randomly
+#after one call this should be comment out otherwise the code gets error 
 
-select_folder_randomly()
+# select_folder_randomly()
 
 #Function for Display the images: 
 def show(f_path):
@@ -36,13 +38,6 @@ def show(f_path):
                 cv2.waitKey(0) 
                 cv2.destroyAllWindows()
 # show('Selected_Image_folder')
-
-#function for add Noise
-def add_noise(image):
-    noise = np.zeros(image.shape, np.uint8)
-    cv2.randn(noise, 0, 25)
-    noisy_image = cv2.add(image, noise)
-    return noisy_image
 
 output_directory= 'cv_output'
 main_directory = 'Selected_Image_folder'
@@ -71,7 +66,7 @@ def processing_image(image,filename,folder):
     
     
     #code for add noise into the images and save it
-    noisy_image = add_noise(image)
+    noisy_image = image + np.random.normal(0, 25, image.shape).astype(np.uint8)
     save_into_file(gray_image,folder,filename,"_noised_image")
     # Perform histogram equalization
     equalized_image = cv2.equalizeHist(gray_image)
