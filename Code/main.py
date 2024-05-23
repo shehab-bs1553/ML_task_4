@@ -24,7 +24,7 @@ def select_folder_randomly():
 #This below should be called only once for selecting the folder randomly
 #after one call this should be comment out otherwise the code gets error 
 
-select_folder_randomly()
+# select_folder_randomly()
 
 #Function for Display the images: 
 def show(f_path):
@@ -78,7 +78,7 @@ def processing_image(image,filename,folder):
     save_into_file(gray_image,folder,filename,"_adaptive_threshold_image")               
     
     
-#Iterate through all the images using for loop
+#Iterate through all the images using for loop for processing the images
 
 for i in selected_folders:
         folder_path = os.path.join(main_directory, i)
