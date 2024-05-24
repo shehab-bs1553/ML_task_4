@@ -43,7 +43,7 @@ def show(f_path):
                 cv2.destroyAllWindows()
 # show('Selected_Image_folder')
 
-
+#augmentation pipeline for adding augmetation into the images
 augmentations = A.Compose([
     RandomBrightnessContrast(p=1),
     HorizontalFlip(p=1),
