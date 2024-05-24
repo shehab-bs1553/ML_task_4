@@ -24,7 +24,7 @@ def select_folder_randomly():
             continue
          else:
             shutil.copytree(src_path, dst_path)
-    # print(f"Selected folders and their contents have been copied to {destination_directory}")
+
     
 
 select_folder_randomly()
@@ -88,7 +88,7 @@ def processing_image(image,filename,folder):
     brightened_image = np.clip(image.astype(np.int16) + 80, 0, 255).astype(np.uint8)
     save_into_file(brightened_image,folder,filename,"_brightened_image")
     
-    x, y, width, height = 0, 0, 300, 300  # Adjust as needed
+    x, y, width, height = 0, 0, 300, 300  
     cropped_image = image[y:y+height, x:x+width]
     save_into_file(cropped_image,folder,filename,"_cropped_image")
 
