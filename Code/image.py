@@ -25,7 +25,6 @@ def select_folder_randomly():
          else:
             shutil.copytree(src_path, dst_path)
 
-    
 
 select_folder_randomly()
 
