@@ -24,7 +24,7 @@ def select_folder_randomly():
             continue
          else:
             shutil.copytree(src_path, dst_path)
-    print(f"Selected folders and their contents have been copied to {destination_directory}")
+    # print(f"Selected folders and their contents have been copied to {destination_directory}")
     
 
 select_folder_randomly()
