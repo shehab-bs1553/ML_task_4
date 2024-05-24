@@ -141,7 +141,7 @@ def save_spectral_rolloff(y, sr, file_name):
 
 for f_name in audio_files:
     file_path = os.path.join(dest_dir, f_name)
-    y, sr = librosa.load(file_path, sr=None) 
+    y, sr = librosa.load(file_path) 
 
     save_waveform(y, sr, f_name)
     save_spectrogram(y, sr, f_name)
