@@ -16,21 +16,20 @@ random.seed(42)
 selected_folders = random.sample(all_folders, 10)
 
 
-
-# Select folder randomly from the main folder: 
 def select_folder_randomly():
     for i in selected_folders:
          src_path = os.path.join(main_directory, i)
          dst_path = os.path.join(destination_directory, i)
-         shutil.copytree(src_path, dst_path)
+         if os.path.exists(dst_path):
+            continue
+         else:
+            shutil.copytree(src_path, dst_path)
     print(f"Selected folders and their contents have been copied to {destination_directory}")
     
-#This below call function should be called only once for selecting the folder randomly
-# #after one call this should be comment out otherwise the code gets error 
 
-# select_folder_randomly()
+select_folder_randomly()
 
-#Function for Display the images: 
+
 def show(f_path):
     for i in selected_folders:
         folder_path = os.path.join(f_path, i)
@@ -41,18 +40,13 @@ def show(f_path):
                 cv2.imshow(filename, image)
                 cv2.waitKey(0) 
                 cv2.destroyAllWindows()
+
+
 # show('Selected_Image_folder')
-
-#augmentation pipeline for adding augmetation into the images
-augmentations = A.Compose([
-    RandomBrightnessContrast(p=1),
-    HorizontalFlip(p=1),
-    Rotate(limit=90, p=1)
-])
-
 
 output_directory= 'cv_output'
 main_directory = 'Selected_Image_folder'
+
 
 def save_into_file(name,folder,filename,Name):
     output_folder_path = os.path.join(output_directory, folder)
@@ -61,40 +55,42 @@ def save_into_file(name,folder,filename,Name):
     output_file_path_edge = os.path.join(output_directory, folder, f"{file_name}"+Name+f"{file_extension}")              
     cv2.imwrite(output_file_path_edge,name)
     
-#Function for doing all the task
+
 def processing_image(image,filename,folder):
     
-    #code for gray_scale the images and find the edges of the images and also saved into the cv_output file
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)   
     save_into_file(gray_image,folder,filename,"_gray_image")           
     edges = cv2.Canny(gray_image, 100, 200) 
     save_into_file(edges,folder,filename,"_edges_image")
-    #code for resize the images and save it
+
     resized_image = cv2.resize(image, (256,256))
     save_into_file(resized_image,folder,filename,"_resized_image")
-    #code for blurring the images and save it
+  
     blurred_image = cv2.GaussianBlur(image, (5, 5), 0)
     save_into_file(blurred_image,folder,filename,"_blured_image")
     
-    
-    #code for add noise into the images and save it
     noisy_image = image + np.random.normal(0, 25, image.shape).astype(np.uint8)
     save_into_file(noisy_image,folder,filename,"_noised_image")
-    # Perform histogram equalization
+    
     equalized_image = cv2.equalizeHist(gray_image)
     save_into_file(equalized_image,folder,filename,"_histogram_image")
-    #add global and adaptive threshold
+    
     ret, global_threshold = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
     save_into_file(global_threshold,folder,filename,"_global_threshold_image")              
     adaptive_threshold = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
     save_into_file(adaptive_threshold,folder,filename,"_adaptive_threshold_image")
     
-    augmented = augmentations(image=image)
-    augmented_image = augmented['image']
-    save_into_file(augmented_image,folder,filename,"_augmented_image")               
+    rotated_90_clockwise = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
+    save_into_file(rotated_90_clockwise,folder,filename,"_rotated_90_clockwise")
+    rotated_180 = cv2.rotate(image, cv2.ROTATE_180)
+    save_into_file(rotated_180,folder,filename,"_rotated_180")
     
+    brightened_image = np.clip(image.astype(np.int16) + 80, 0, 255).astype(np.uint8)
+    save_into_file(brightened_image,folder,filename,"_brightened_image")
     
-#Iterate through all the images using for loop for processing the images
+    x, y, width, height = 0, 0, 300, 300  # Adjust as needed
+    cropped_image = image[y:y+height, x:x+width]
+    save_into_file(cropped_image,folder,filename,"_cropped_image")
 
 for i in selected_folders:
         folder_path = os.path.join(main_directory, i)
@@ -104,6 +100,6 @@ for i in selected_folders:
                 image = cv2.imread(file_path)
                 processing_image(image,filename,i)
 
-#function call for displaying all output images
+#If you want to display all the output images then comment out the below function and run it again
 # show('cv_output')
 
