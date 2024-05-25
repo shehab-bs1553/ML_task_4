@@ -32,7 +32,7 @@ os.makedirs(plots_dir, exist_ok=True)
 audio_files = [f for f in os.listdir(dest_dir) if os.path.isfile(os.path.join(dest_dir, f))]
 
 def extract_features(audio_data, sampling_rate, file_name):
-    mfcc = np.mean(librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=13), axis=1)  
+    mfcc = np.mean(librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15), axis=1)  
     mfcc_dict = {f'MFCC_{i+1}': value for i, value in enumerate(mfcc)}
 
     chroma = np.mean(librosa.feature.chroma_stft(y=audio_data, sr=sampling_rate), axis=1)
@@ -77,7 +77,7 @@ def save_spectrogram(audio_data, sampling_rate, file_name):
     plt.close()
 
 def save_mfcc(audio_data, sampling_rate, file_name):
-    mfccs = librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=13)
+    mfccs = librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15)
     plt.figure(figsize=(10, 4))
     librosa.display.specshow(mfccs, sr=sampling_rate, x_axis='time')
     plt.colorbar()

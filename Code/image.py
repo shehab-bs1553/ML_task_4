@@ -51,8 +51,8 @@ def save_into_file(name,folder,filename,Name):
     output_folder_path = os.path.join(output_directory, folder)
     os.makedirs(output_folder_path, exist_ok=True)             
     file_name, file_extension = os.path.splitext(filename)     
-    output_file_path_edge = os.path.join(output_directory, folder, f"{file_name}"+Name+f"{file_extension}")              
-    cv2.imwrite(output_file_path_edge,name)
+    output_file_path = os.path.join(output_directory, folder, f"{file_name}"+Name+f"{file_extension}")              
+    cv2.imwrite(output_file_path,name)
     
 
 def processing_image(image,filename,folder):
