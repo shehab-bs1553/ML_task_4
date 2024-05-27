@@ -68,8 +68,6 @@ def extract_features(audio_data, sampling_rate, file_name):
     features = {
         'file_name': file_name,  
     }
-
-
     for i, value in enumerate(mfcc):
         features[f'MFCC_{i+1}'] = value
 
