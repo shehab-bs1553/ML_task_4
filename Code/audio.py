@@ -86,7 +86,7 @@ features_list = []
 
 def save_waveform(audio_data, sampling_rate, file_name):
     plt.figure(figsize=(10, 4))
-    librosa.display.waveshow(audio_data, sr=sampling_rate) 
+    librosa.display.waveshow(audio_data, sr=sampling_rate)
     plt.title(f"Waveform of {file_name}")
     plt.xlabel("Time (s)")
     plt.ylabel("Amplitude")
@@ -94,11 +94,10 @@ def save_waveform(audio_data, sampling_rate, file_name):
     plt.savefig(plot_path)
     plt.close()
 
-
 def save_spectrogram(audio_data, sampling_rate, file_name):
     plt.figure(figsize=(10, 4))
     D = librosa.amplitude_to_db(np.abs(librosa.stft(audio_data)), ref=np.max)
-    librosa.display.specshow(D, sr=sampling_rate, x_axis='time', y_axis='log', cmap='inferno')  
+    librosa.display.specshow(D, sr=sampling_rate, x_axis='time', y_axis='log')
     plt.colorbar(format='%+2.0f dB')
     plt.title(f"Spectrogram of {file_name}")
     plt.xlabel("Time (s)")
@@ -107,11 +106,10 @@ def save_spectrogram(audio_data, sampling_rate, file_name):
     plt.savefig(plot_path)
     plt.close()
 
-
 def save_mfcc(audio_data, sampling_rate, file_name):
     mfccs = librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15)
     plt.figure(figsize=(10, 4))
-    librosa.display.specshow(mfccs, sr=sampling_rate, x_axis='time', cmap='viridis')  
+    librosa.display.specshow(mfccs, sr=sampling_rate, x_axis='time', cmap='viridis')  # Change the colormap here
     plt.colorbar()
     plt.title(f"MFCC of {file_name}")
     plt.xlabel("Time (s)")
@@ -123,7 +121,7 @@ def save_mfcc(audio_data, sampling_rate, file_name):
 def save_chroma(audio_data, sampling_rate, file_name):
     chroma = librosa.feature.chroma_stft(y=audio_data, sr=sampling_rate)
     plt.figure(figsize=(10, 4))
-    librosa.display.specshow(chroma, sr=sampling_rate, x_axis='time', y_axis='chroma', cmap='magma')  
+    librosa.display.specshow(chroma, sr=sampling_rate, x_axis='time', y_axis='chroma')
     plt.colorbar()
     plt.title(f"Chroma Features of {file_name}")
     plt.xlabel("Time (s)")
@@ -132,11 +130,10 @@ def save_chroma(audio_data, sampling_rate, file_name):
     plt.savefig(plot_path)
     plt.close()
 
-
 def save_spectral_contrast(audio_data, sampling_rate, file_name):
     spectral_contrast = librosa.feature.spectral_contrast(y=audio_data, sr=sampling_rate)
     plt.figure(figsize=(10, 4))
-    librosa.display.specshow(spectral_contrast, sr=sampling_rate, x_axis='time', cmap='inferno')  
+    librosa.display.specshow(spectral_contrast, sr=sampling_rate, x_axis='time')
     plt.colorbar()
     plt.title(f"Spectral Contrast of {file_name}")
     plt.xlabel("Time (s)")
@@ -145,11 +142,10 @@ def save_spectral_contrast(audio_data, sampling_rate, file_name):
     plt.savefig(plot_path)
     plt.close()
 
-
 def save_zero_crossing_rate(audio_data, sampling_rate, file_name):
     zero_crossings = librosa.feature.zero_crossing_rate(audio_data)
     plt.figure(figsize=(10, 4))
-    plt.plot(zero_crossings[0], color='green')  
+    plt.plot(zero_crossings[0])
     plt.title(f"Zero-Crossing Rate of {file_name}")
     plt.xlabel("Frames")
     plt.ylabel("Zero-Crossing Rate")
@@ -160,14 +156,13 @@ def save_zero_crossing_rate(audio_data, sampling_rate, file_name):
 def save_spectral_rolloff(audio_data, sampling_rate, file_name):
     spectral_rolloff = librosa.feature.spectral_rolloff(y=audio_data, sr=sampling_rate)
     plt.figure(figsize=(10, 4))
-    plt.plot(spectral_rolloff[0], color='blue')  
+    plt.plot(spectral_rolloff[0])
     plt.title(f"Spectral Roll-off of {file_name}")
     plt.xlabel("Frames")
     plt.ylabel("Spectral Roll-off (Hz)")
     plot_path = os.path.join(plots_dir, f"{file_name}_spectral_rolloff.png")
     plt.savefig(plot_path)
     plt.close()
-
 
 for f_name in audio_files:
     file_path = os.path.join(dest_dir, f_name)
