@@ -4,15 +4,15 @@
 
 ## Project Description: 
 
-    The project involves two main sections:
+ ### The project involves two main sections:
   
-      1.Computer Vision Section:
+#### 1.Computer Vision Section:
         * Basic image processing operations using OpenCV.
         * Operations include grayscale conversion, resizing, edge detection, histogram equalization, and thresholding.
         * Selected images are saved in the Selected_Image_folder for performing the above task on the images.
         * Processed images are saved in the cv_output directory.
         
-      2.Audio Processing Section:
+#### 2.Audio Processing Section:
         * Fundamental audio processing techniques using a chosen audio processing library.
         * Operations include waveform plotting, spectrogram computation, and feature extraction
          (MFCC, chroma features, spectral contrast, zero-crossing rate, and spectral roll-off).
