@@ -21,9 +21,20 @@ Project Description:
         * Features are saved in the audio_features.csv CSV file.
 
 
-How to Install and Run the Project: 
+To download the project : 
 
     For clone the repository into your file open the cmd and write : https://github.com/shehab-bs1553/ML_task_4.git
+
+To active the virtual environment: 
+  
+   Execute this 2 commands 1 after another in your commend prompt 
+                    
+                    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 
+                    .\venv\Scripts\Activate 
+To install all the dependencies:
+
+        pip install -r requirements.txt
+
 
 To run the python script : 
         
