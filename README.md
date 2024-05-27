@@ -30,6 +30,8 @@
    Execute this 2 commands 1 after another in your commend prompt 
                     
                     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 
+
+                    
                     .\venv\Scripts\Activate 
 # To install all the dependencies:
 
