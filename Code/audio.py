@@ -20,8 +20,21 @@ all_audio_files = [f for f in os.listdir(source_dir)
                   if os.path.isfile(os.path.join(source_dir, f)) and
                   f.lower().endswith(audio_extensions)]
 
-random.seed(10)
+random.seed(50)
 random_audio_files = random.sample(all_audio_files, 10)
+
+def clear_directory():
+    if os.path.exists(dest_dir) and os.path.isdir(dest_dir):
+        for item in os.listdir(dest_dir):
+            item_path = os.path.join(dest_dir, item)
+            if os.path.isfile(item_path):
+                os.remove(item_path)
+
+    if os.path.exists(plots_dir) and os.path.isdir(plots_dir):
+        for item in os.listdir(plots_dir):
+            item_path = os.path.join(plots_dir, item)
+            if os.path.isfile(item_path):
+                os.remove(item_path)
 
 for file_name in random_audio_files:
     full_file_name = os.path.join(source_dir, file_name)
@@ -29,7 +42,11 @@ for file_name in random_audio_files:
 
 os.makedirs(plots_dir, exist_ok=True)
 
-audio_files = [f for f in os.listdir(dest_dir) if os.path.isfile(os.path.join(dest_dir, f))]
+audio_files = []
+
+for item in os.listdir(dest_dir):
+    if os.path.isfile(os.path.join(dest_dir, item)):
+        audio_files.append(item)
 
 def extract_features(audio_data, sampling_rate, file_name):
     mfcc = np.mean(librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15), axis=1)  
@@ -167,5 +184,7 @@ for f_name in audio_files:
 
 features_df = pd.DataFrame(features_list)
 csv_path = os.path.join(csv_dir, 'audio_features.csv')
-if not os.path.exists(csv_path):
-    features_df.to_csv(csv_path, index=False)
+
+if os.path.exists(csv_path):
+    os.remove(csv_path)
+features_df.to_csv(csv_path, index=False)
