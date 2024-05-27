@@ -1,8 +1,8 @@
-# Project's Title:
+## Project's Title:
 
      Audio processing and image processing using OpenCV and Python.
 
-# Project Description: 
+## Project Description: 
 
     The project involves two main sections:
   
@@ -21,28 +21,31 @@
         * Features are saved in the audio_features.csv CSV file.
 
 
-# To download the project : 
+## To download the project : 
 
-    For clone the repository into your file open the cmd and write : https://github.com/shehab-bs1553/ML_task_4.git
+For clone the repository into your file open the cmd and write :
+    
+    https://github.com/shehab-bs1553/ML_task_4.git
 
-# To active the virtual environment: 
+## To active the virtual environment: 
   
-   Execute this 2 commands 1 after another in your commend prompt 
+   #### 1.Execute this first run the command in your commend prompt 
                     
                     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 
 
-                    
-                    .\venv\Scripts\Activate 
-# To install all the dependencies:
+  #### 2. After that run the below command-   
+  
+                     .\venv\Scripts\Activate 
+## To install all the dependencies:
 
         pip install -r requirements.txt
 
 
-# To run the python script : 
+## To run the python script : 
         
-        1. For image processing task write -
+1. For image processing task write -
                
                 python Code/image.py
-        2. For audio processing task write - 
+2. For audio processing task write - 
         
                 python Code/audio.py
