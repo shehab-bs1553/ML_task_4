@@ -33,23 +33,40 @@ audio_files = [f for f in os.listdir(dest_dir) if os.path.isfile(os.path.join(de
 
 def extract_features(audio_data, sampling_rate, file_name):
     mfcc = np.mean(librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15), axis=1)  
-    mfcc_dict = {f'MFCC_{i+1}': value for i, value in enumerate(mfcc)}
+    mfcc_dict = {}
+    for i, value in enumerate(mfcc):
+        mfcc_dict[f'MFCC_{i+1}'] = value
 
     chroma = np.mean(librosa.feature.chroma_stft(y=audio_data, sr=sampling_rate), axis=1)
-    chroma_dict = {f'chroma_{i+1}': value for i, value in enumerate(chroma)}
+    chroma_dict = {}
+    for i, value in enumerate(chroma):
+        chroma_dict[f'chroma_{i+1}'] = value
 
     spectral_contrast = np.mean(librosa.feature.spectral_contrast(y=audio_data, sr=sampling_rate), axis=1)
-    spectral_contrast_dict = {f'spectral_contrast_{i+1}': value for i, value in enumerate(spectral_contrast)}
-    
+    spectral_contrast_dict = {}
+    for i, value in enumerate(spectral_contrast):
+        spectral_contrast_dict[f'spectral_contrast_{i+1}'] = value    
+        
+    zero_crossing_rate = np.mean(librosa.feature.zero_crossing_rate(audio_data))
+    spectral_rolloff = np.mean(librosa.feature.spectral_rolloff(y=audio_data, sr=sampling_rate))
+
     features = {
-        'file_name': file_name,
-        **mfcc_dict,
-        **chroma_dict,
-        **spectral_contrast_dict,
-        'zero_crossing_rate': np.mean(librosa.feature.zero_crossing_rate(audio_data)),
-        'spectral_rolloff': np.mean(librosa.feature.spectral_rolloff(y=audio_data, sr=sampling_rate))
+        'file_name': file_name,  
     }
-    
+
+
+    for i, value in enumerate(mfcc):
+        features[f'MFCC_{i+1}'] = value
+
+    for i, value in enumerate(chroma):
+        features[f'chroma_{i+1}'] = value
+
+    for i, value in enumerate(spectral_contrast):
+        features[f'spectral_contrast_{i+1}'] = value
+
+    features['zero_crossing_rate'] = zero_crossing_rate
+    features['spectral_rolloff'] = spectral_rolloff
+        
     return features
 
 features_list = []
