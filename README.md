@@ -4,7 +4,7 @@ Project's Title:
 
 Project Description: 
 
-    The task involves two main sections:
+    The project involves two main sections:
   
       1.Computer Vision Section:
         * Basic image processing operations using OpenCV.
