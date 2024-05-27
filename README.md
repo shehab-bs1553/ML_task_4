@@ -14,5 +14,6 @@ The task involves two main sections:
 
 For clone the repository into your file open the cmd and write : https://github.com/shehab-bs1553/ML_task_4.git
 
-To run the python script : 1. For image processing task write - python Code/image.py
-                           2. For audio processing task write python Code/audio.py
+To run the python script : 
+1. For image processing task write - python Code/image.py
+2. For audio processing task write python Code/audio.py
