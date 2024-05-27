@@ -21,9 +21,9 @@ Project Description:
         * Features are saved in the audio_features.csv CSV file.
 
 
-To download the project : 
-
-    For clone the repository into your file open the cmd and write : https://github.com/shehab-bs1553/ML_task_4.git
+For clone the repository into your file open the cmd and write :
+     
+     https://github.com/shehab-bs1553/ML_task_4.git
 
 To active the virtual environment: 
   
