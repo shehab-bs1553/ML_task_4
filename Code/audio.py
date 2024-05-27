@@ -23,18 +23,16 @@ all_audio_files = [f for f in os.listdir(source_dir)
 random.seed(50)
 random_audio_files = random.sample(all_audio_files, 10)
 
-def clear_directory():
-    if os.path.exists(dest_dir) and os.path.isdir(dest_dir):
-        for item in os.listdir(dest_dir):
-            item_path = os.path.join(dest_dir, item)
+def clear_directory(directory):
+    if os.path.exists(directory) and os.path.isdir(directory):
+        for item in os.listdir(directory):
+            item_path = os.path.join(directory, item)
             if os.path.isfile(item_path):
                 os.remove(item_path)
 
-    if os.path.exists(plots_dir) and os.path.isdir(plots_dir):
-        for item in os.listdir(plots_dir):
-            item_path = os.path.join(plots_dir, item)
-            if os.path.isfile(item_path):
-                os.remove(item_path)
+
+clear_directory(dest_dir)
+clear_directory(plots_dir)
 
 for file_name in random_audio_files:
     full_file_name = os.path.join(source_dir, file_name)

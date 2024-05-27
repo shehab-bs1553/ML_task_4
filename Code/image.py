@@ -9,6 +9,7 @@ from albumentations import RandomBrightnessContrast, HorizontalFlip, Rotate
 
 main_directory = 'pokemon_image\Pokemon'
 destination_directory = 'Selected_Image_folder'
+output_directory= 'cv_output'
 
 all_items = os.listdir(main_directory)
 
@@ -51,8 +52,7 @@ def show(f_path):
 
 # show('Selected_Image_folder')
 
-output_directory= 'cv_output'
-main_directory = 'Selected_Image_folder'
+
 if os.path.exists(output_directory) and os.path.isdir(output_directory):
         shutil.rmtree(output_directory)
 
@@ -101,7 +101,7 @@ def processing_image(image,filename,folder):
     save_into_file(cropped_image,folder,filename,"_cropped_image")
 
 for i in selected_folders:
-        folder_path = os.path.join(main_directory, i)
+        folder_path = os.path.join(destination_directory, i)
         for filename in os.listdir(folder_path):
             file_path = os.path.join(folder_path, filename)
             if os.path.isfile(file_path) and file_path.lower().endswith(('.png', '.jpg', '.jpeg')):
