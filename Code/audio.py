@@ -109,7 +109,7 @@ def save_spectrogram(audio_data, sampling_rate, file_name):
 def save_mfcc(audio_data, sampling_rate, file_name):
     mfccs = librosa.feature.mfcc(y=audio_data, sr=sampling_rate, n_mfcc=15)
     plt.figure(figsize=(10, 4))
-    librosa.display.specshow(mfccs, sr=sampling_rate, x_axis='time', cmap='viridis')  # Change the colormap here
+    librosa.display.specshow(mfccs, sr=sampling_rate, x_axis='time')
     plt.colorbar()
     plt.title(f"MFCC of {file_name}")
     plt.xlabel("Time (s)")
