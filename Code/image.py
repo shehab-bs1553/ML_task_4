@@ -6,7 +6,6 @@ import numpy as np
 import albumentations as A
 from albumentations import RandomBrightnessContrast, HorizontalFlip, Rotate
 
-
 main_directory = 'pokemon_image\Pokemon'
 destination_directory = 'Selected_Image_folder'
 output_directory= 'cv_output'
@@ -21,8 +20,14 @@ for item in all_items:
 random.seed(10)
 selected_folders = random.sample(all_folders, 10)
 
-if os.path.exists(destination_directory) and os.path.isdir(destination_directory):
-        shutil.rmtree(destination_directory)
+def clear_directory(directory):
+    if os.path.exists(directory) and os.path.isdir(directory):
+            shutil.rmtree(directory)
+  
+
+clear_directory(destination_directory)
+clear_directory(output_directory)
+
 os.makedirs(destination_directory, exist_ok=True)
 
 def select_folder_randomly():
@@ -51,10 +56,6 @@ def show(f_path):
 
 
 # show('Selected_Image_folder')
-
-
-if os.path.exists(output_directory) and os.path.isdir(output_directory):
-        shutil.rmtree(output_directory)
 
 def save_into_file(name,folder,filename,Name):
     output_folder_path = os.path.join(output_directory, folder)
